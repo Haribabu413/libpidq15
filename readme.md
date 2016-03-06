@@ -2,6 +2,8 @@
 
 This PID library is intended for use on 8 and 16 bit microcontrollers which have limited cycles in which to perform multiplication and division operations.
 
+The library utilizes pointers which allows the software writer the ability to easily run multiple control loops on different processes using the same code base.
+
 # Libraries #
 
 This library uses the [libmathq15](https://github.com/slightlynybbled/libmathq15) library.
