@@ -1,5 +1,6 @@
 #include "libpidq15.h"
 
+/* initialize the PID structure with 'reasonable' starting values */
 void pid_init(pidq15_t* pidStruct){
     pidStruct->measLast = 0;
     pidStruct->iLast = 0;
@@ -18,6 +19,7 @@ void pid_init(pidq15_t* pidStruct){
     return;
 }
 
+/* sets the PID gains */
 void pid_setGains(pidq15_t* pidStruct, q15_t kp, q15_t ki, q15_t kd){
     pidStruct->kp = kp;
     pidStruct->ki = ki;
@@ -26,30 +28,36 @@ void pid_setGains(pidq15_t* pidStruct, q15_t kp, q15_t ki, q15_t kd){
     return;
 }
 
+/* sets the maximum output value */
 void pid_setMaxOutput(pidq15_t* pidStruct, q15_t maxOutput){
     pidStruct->maxOutput = maxOutput;
     
     return;
 }
 
+/* sets the minimum output value */
 void pid_setMinOutput(pidq15_t* pidStruct, q15_t minOutput){
     pidStruct->minOutput = minOutput;
     
     return;
 }
 
+/* sets the maximum error, acting as an amplification to kp beyond what is
+ * normally possible using Q1.15 math */
 void pid_setMaxError(pidq15_t* pidStruct, q15_t maxError){
     pidStruct->maxError = q15_abs(maxError);
     
     return;
 }
 
+/* Turns the loop on and off */
 void pid_setMode(pidq15_t* pidStruct, pidmode_t mode){
     pidStruct->mode = mode;
     
     return;
 }
 
+/* should be called at regular intervals for consistent behavior */
 q15_t pid_loop(pidq15_t* pidStruct, q15_t measured, q15_t setpoint){
     q15_t output;
     
