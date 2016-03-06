@@ -4,7 +4,7 @@
 #include "libmathq15.h"
 
 typedef enum _pidmode {
-    ePID_AUTO, ePID_MANUAL
+    ePID_CLOSED_LOOP, ePID_OPEN_LOOP
 }pidmode_t;
 
 typedef struct{

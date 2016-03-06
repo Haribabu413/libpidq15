@@ -14,7 +14,7 @@ void pid_init(pidq15_t* pidStruct){
     pidStruct->minOutput = 0;
     pidStruct->maxError = 32767;
     
-    pidStruct->mode = ePID_AUTO;
+    pidStruct->mode = ePID_CLOSED_LOOP;
     
     return;
 }
@@ -62,7 +62,7 @@ q15_t pid_loop(pidq15_t* pidStruct, q15_t measured, q15_t setpoint){
     q15_t output;
     
     /* determine if the loop is in manual or auto */
-    if(pidStruct->mode == ePID_MANUAL){
+    if(pidStruct->mode == ePID_OPEN_LOOP){
         output = setpoint;
         pidStruct->iLast = output;
         pidStruct->measLast = measured;
